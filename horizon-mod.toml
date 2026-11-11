@@ -1,0 +1,8 @@
+id = "day_counter"
+name = "Day Counter"
+version = "1.0.0"
+description = "Shows the day of the world on the action bar, so you always know how long you have been out here."
+authors = ["CGRLabs"]
+api = "0.2"
+side = "both"
+capabilities = ["registries"]
