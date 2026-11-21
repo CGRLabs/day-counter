@@ -1,5 +1,9 @@
 # Day Counter
 
+![Day Counter icon](icon.png)
+
+> **Current status (2026-11-21):** v1.0.0 is built, deterministically packaged, minisigned, in-game proven (`DAY 0` → `DAY 1`), and ready for the user's new-project submission form. See root `MODS.md` and `development/mods/day-counter/day-counter-submission.md`.
+
 The day of the world, on the action bar, where you can see it without opening
 anything.
 
