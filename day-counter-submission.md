@@ -2,8 +2,10 @@
 
 Submit at: https://playhorizon.dev/mods/submit (sign in with GitHub as CGRLabs), choose **new
 project** — `day_counter` is not in the registry yet.
-**Verified in-game 2026-11-12**: the action bar reads `DAY 0`, and `DAY 1` once the world's
-clock moves.
+
+**Status: ready to submit.** Everything the form asks for now exists: the package is built,
+checked and signed, the icon is drawn, the source is public, and the current bytes were proven
+in-game on 2026-11-21.
 
 ## Form fields
 
@@ -17,38 +19,47 @@ clock moves.
 | Name | Day Counter |
 | Licence | MIT |
 | Authors | CGRLabs |
-| Source code | *(not published yet — see "Still to do")* |
+| Source code | `https://github.com/CGRLabs/day-counter` (public, commit `3ad17ec`) |
 | Categories | utility, information |
 | Tags | hud, day, counter, quality-of-life, action-bar |
-| Icon | *(to be supplied — a PNG of at most 256 KiB)* |
+| Icon | `D:\CGRLabs\Horizon-Ecosystem\development\mods\day-counter\icon.png` (256×256 PNG, 4 KiB) |
 | Public key | `RWRiGjU5z15nz08GagVi7PEavoOfCGsZEqUL5NdQkkilVp7lkOdJtGmk` |
 | Signature | `D:\CGRLabs\Horizon-Ecosystem\development\mods\day-counter\target\horizon-mod\day_counter.hmod.minisig` |
 
 ## Release facts
 
-- File size: **1 422 bytes**
-- SHA-256: `3b70daaa451462d48065b4abf9782ac42fbad61cad0e2e92286bce879688f30b`
+- File size: **1 532 bytes**
+- SHA-256: `fd07ec5e5e316756e95600523f3ad5d664e5fabcf1c1b42c6fc3b3af3835f5f5`
 - Content mod API `0.2`, side `both`, capabilities `["registries"]`
-- `cargo horizon-mod check` → `{"ok":true, …, "kind":"mod", "id":"day_counter", "size":1422, "version":"1.0.0"}`
-- Signature: minisign, verified — *"Signature and comment signature verified"*, trusted comment
-  `day_counter 1.0.0`
-- The build is deterministic: the same sources give the same bytes.
+- `cargo horizon-mod check` → `day_counter 1.0.0 (mod, API 0.2, both)`, `signature verified`
+- Signature: minisign, trusted comment `day_counter 1.0.0`
+- The installed copy at `horizon-windows-x64\horizon-mods\day_counter.hmod` is byte-identical
+  (same SHA-256), so the file proven below is the file being submitted.
+
+The source published at `CGRLabs/day-counter` is at commit `3ad17ec`, which contains exactly the
+`data/` tree this package was built from — the `source` link and the uploaded file agree.
 
 ## What it does
 
 The day of the world, on the action bar.
 
-That is all. Two functions and two tag files: the load function makes a scoreboard, the tick
-function reads the world's clock, divides it by the length of a day, and writes the number above
-your hotbar.
+Two functions and two tag files: the load function makes a scoreboard, the tick function reads
+the world's clock, divides it by the length of a day, and writes the number above your hotbar.
 
 It adds no items, no blocks, no screens and no settings, and it changes no gameplay. It is
 **data only** — nothing to compile, nothing that can break.
 
-## In-game proof — VERIFIED 2026-11-12
+It also knows when to keep quiet: if the Day Tally native mod is installed it already draws the
+day in the corner and sets `#day_tally daycounter 1`, and this line then stands down so the day
+is never shown twice. With Day Tally absent — the only case that ships today — the guard passes
+and the counter draws, which is what the proof below exercises.
+
+## In-game proof — VERIFIED 2026-11-21
 
 `python tools/proof_day_counter.py` against the real client on a scratch world, with the mod
-installed and enabled.
+installed and enabled. The scratch home carried `day_counter.hmod`, `flesh_to_leather.hmod` and
+`salvage.hmod`; `mod.day_tally` was enabled but its file is gone, so this is the no-Day-Tally
+path.
 
 | Check | Result |
 | --- | --- |
@@ -56,8 +67,11 @@ installed and enabled.
 | The day moves | after `/time set 25000` it reads **`DAY 1`** |
 | The counter's source | the world's own clock (`/time query time`), the same day `/time query day` gives |
 
-Report: `target/proof/day-counter-v01-report.json`. The proof's own picture shows `DAY 1` above
-the hotbar.
+Report: `target/proof/day-counter-v01-report.json` (`"passed": true`). The screenshot
+`target/proof/day-counter-v01.png` shows `DAY 1` above the hotbar.
+
+The earlier run recorded on 2026-11-12 proved a 1 422-byte build; the package grew to 1 532 bytes
+when the stand-down line was added, so it was proven again rather than assumed.
 
 ## Description (paste into the Markdown box)
 
@@ -78,13 +92,8 @@ player, a LAN host, or a server that has the mod installed.
 
 ## Still to do (needs the user)
 
-- **The icon** — a PNG of at most 256 KiB, square is best. A picture of the action bar reading
-  `DAY 12` would say what the mod is at a glance.
-- **Publish the source** — the registry's pull-request template asks that the `source` link has
-  the code the file was built from. The source should go to
-  `https://github.com/CGRLabs/day-counter` (a public repo), like Flesh to Leather and Salvage.
 - **Fill in the form** at https://playhorizon.dev/mods/submit with the table above and the
-  description.
+  description, uploading `day_counter.hmod`, `day_counter.hmod.minisig` and `icon.png`.
 - **Wait for the review** — a project's first listing is always reviewed by a person.
 
 ## Credits
