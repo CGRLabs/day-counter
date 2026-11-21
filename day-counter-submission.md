@@ -19,7 +19,7 @@ in-game on 2026-11-21.
 | Name | Day Counter |
 | Licence | MIT |
 | Authors | CGRLabs |
-| Source code | `https://github.com/CGRLabs/day-counter` (public, commit `3ad17ec`) |
+| Source code | `https://github.com/CGRLabs/day-counter` (public, branch `master`) |
 | Categories | utility, information |
 | Tags | hud, day, counter, quality-of-life, action-bar |
 | Icon | `D:\CGRLabs\Horizon-Ecosystem\development\mods\day-counter\icon.png` (256×256 PNG, 4 KiB) |
@@ -36,8 +36,8 @@ in-game on 2026-11-21.
 - The installed copy at `horizon-windows-x64\horizon-mods\day_counter.hmod` is byte-identical
   (same SHA-256), so the file proven below is the file being submitted.
 
-The source published at `CGRLabs/day-counter` is at commit `3ad17ec`, which contains exactly the
-`data/` tree this package was built from — the `source` link and the uploaded file agree.
+The `data/` tree published at `CGRLabs/day-counter` (branch `master`) is exactly what this
+package was built from — the `source` link and the uploaded file agree.
 
 ## What it does
 
